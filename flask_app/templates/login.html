@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project.css') }}">
+    <title>Login</title>
+</head>
+<body class="body">
+    <a class="reg_logLink2" href="/">Back to Main</a>
+    <a class="reg_logLink" href="/register">Haven't Registered Yet?</a>
+    <div class="content">
+        <div class="box" style="height: 600px !important;">
+            <form action="/login_user" method="POST">
+                <h2 style="color: green;">Login</h2>
+
+                {% with login = get_flashed_messages(category_filter=["login"]) %}
+                    {% if login %}
+                    <ul class='flashes'>
+                        {% for message in login %}
+                            <li class={{category}}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+
+                <label id="login" for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" name="email">
+
+                <label id="login" for="password" class="col-sm-2 col-form-label">Password</label>
+                <input type="password" class="form-control" name="password">
+
+                <input style="background-color: green;" class="button" type="submit" value="Login">
+                </form>
+        </div>
+    </div>
+</body>
+</html>
