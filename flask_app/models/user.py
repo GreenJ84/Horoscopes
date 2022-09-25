@@ -61,11 +61,10 @@ class User:
 
         query = 'INSERT INTO users (first_name, last_name, dob, tob, email, password) VALUES (%(first_name)s, %(last_name)s, %(dob)s, %(tob)s, %(email)s, %(password)s)'
 
-        # results = connectToMySQL('horoscopes').query_db(query, data)
+        results = connectToMySQL('horoscopes').query_db(query, data)
         print('created users')
 
-        return 
-        # results
+        return results
 
 
 # =======================    Get User information       =================================
@@ -85,4 +84,4 @@ class User:
 
         query = "SELECT * FROM users WHERE email = %(email)s"
 
-        return connectToMySQL('register_login').query_db(query, data)
+        return connectToMySQL('horoscopes').query_db(query, data)

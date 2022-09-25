@@ -44,29 +44,31 @@ def login():
 @app.route('/register_user', methods=['POST'])
 def register_user():
     print(request.form)
-    # if not User.validate_register(request.form):
-    #     return redirect('/register')
+    if not User.validate_register(request.form):
+        return redirect('/register')
 
-    # data_check ={
-    #     'email': request.form['email']
-    # }
-    # user = User.get_by_email(data_check)
-    # if user:
-    #     flash('Email already registered! Please log in!', 'login')
-    #     return redirect('/login')
+    data_check ={
+        'email': request.form['email']
+    }
+    user = User.get_by_email(data_check)
+    if user:
+        flash('Email already registered! Please log in!', 'login')
+        return redirect('/login')
 
-    # password_hash = bcrypt.generate_password_hash(request.form['password'])
+    password_hash = bcrypt.generate_password_hash(request.form['password'])
 
-    # data = {
-    #     'first_name': request.form['first_name'],
-    #     'last_name': request.form['last_name'],
-    #     'email': request.form['email'],
-    #     'password': password_hash
-    # }
-    # user_id = User.create_user(data)
+    data = {
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email'],
+        'dob': request.form['dob'],
+        'tob': request.form['tob'],
+        'password': password_hash
+    }
+    user_id = User.create_user(data)
 
-    # session['user_id'] = user_id
-    # session['user_first_name']= request.form['first_name']
+    session['user_id'] = user_id
+    session['user_first_name']= request.form['first_name']
 
     return redirect('/dashboard')
 
