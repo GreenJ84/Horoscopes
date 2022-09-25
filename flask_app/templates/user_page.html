@@ -8,15 +8,23 @@
     <title>User Page</title>
 </head>
 <body>
+    <div style='text-align: center;'>
     <h1>Welcome {{display_name}}</h1>
 
     {% for info in user_info %}
-    <h4>{{info.first_name}}</h4>
-    <h4>{{info.last_name}}</h4>
-    <h4>{{info.email}}</h4>
+
+    <h3 >{{info.first_name}}</h3>
+    <h3>{{info.last_name}}</h3>
+    <h3>{{info.email}}</h3>
     {% endfor %}
+    <br/><br/><br/> 
+    <div style="border: 2px solid black;">
+    <p >Detailed Horoscopes have been ended due to API fee's on the implemented API. Return status is:</p>
+    <h3>Unknown</h3>
+    </div>
+    </div>
+    <a style='position: absolute; right: 160px; top: 500px;' class="button1" href="/logout">Logout</a>
 
-
-    <a class="button1" href="/logout">Logout</a>
+    
 </body>
 </html>
