@@ -37,6 +37,10 @@
     width: 30%;
     margin-left: 30px;
 }
+.signHolder{
+    width: 50%;
+}
+
 #sign{
     font-size: 120px;
     margin-left: 80px;

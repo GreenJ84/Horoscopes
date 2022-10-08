@@ -9,13 +9,16 @@
 </head>
 <body>
     <div style='text-align: center;'>
-    <h1>Welcome {{display_name}}</h1>
-
     {% for info in user_info %}
+    <h1>Welcome {{info.first_name}} {{info.last_name}}</h1>
 
-    <h3 >{{info.first_name}}</h3>
-    <h3>{{info.last_name}}</h3>
-    <h3>{{info.email}}</h3>
+    <div style="border: 2px solid grey; width: 50%; margin: 0px 25%;">
+    <h2> User Info:</h2>
+    <h4>Email: {{info.email}}</h4>
+    <h4>Date of Birth: {{dtob.month}}-{{dtob.day}}-{{dtob.year}}</h4>
+    <h4>Time of Birth: {{dtob.hour}}:{{dtob.minute}}:{{dtob.second}} {% if dtob.hour < 12 %}AM{% else %}PM{% endif %}</h4>
+    <h4>Birth Coordinates: {{info.location}}</h4>
+    </div>
     {% endfor %}
     <br/><br/><br/> 
     <div style="border: 2px solid black;">
