@@ -1,11 +1,8 @@
 
 async function display_leo(){
-    console.log("wht Me")
+
     var leoURL = `https://aztro.sameerkumar.website?sign=leo&day=today`;
-    console.log(leoURL);
     var currentDate = new Date();
-    
-    console.log("wht Me")
 
     document.getElementById('current_date').innerHTML = currentDate.toLocaleDateString('en-US');
 
@@ -78,36 +75,36 @@ async function right_description(){
 
 
 async function get_location(){
-    var location = document.getElementById('birth_location').value;
+    const location = document.getElementById('birth_location').value;
+    console.log(location);
 
-    var locationURL = `https://api.bloom.be/api/places?name=${location}`
+    const URL = `https://spott.p.rapidapi.com/places/autocomplete?limit=10&skip=0&country=US%2CCA%2CMX&q=${location}&type=CITY`;
 
 
-    var settings = {
-        method: 'POST',
+    const settings = {
+        method: 'GET',
         headers: {
-            "Authorization": "731294|odMjlPGuJH9ZAT4vVYKmVAYgxABNtZWAY9V2UyqJ",
-            "Access-Control-Allow-Origin": '*'
-        }
+    'X-RapidAPI-Key': 'f815fbac89msh4d641516a677c7fp1cd9a8jsnd3017f41442f',
+    'X-RapidAPI-Host': 'spott.p.rapidapi.com'
     }
+};
 
-    var response = await fetch ( locationURL, settings );
-    var places = await response.json();
-    console.log(data)
-
+    const response = await fetch ( URL, settings );
+    const places = await response.json();
+    console.log(places)
 
     const results = document.querySelector('#location_results')
-    results.innerHTML = 'El Paso';
+    console.log(results.name);
+    results.style.display = 'inline-block';
+    document.getElementById('birth_location').style.display = 'none';
+    document.getElementById('button-addon2').style.display = 'none';
 
-    if (places['data']){
-        for (const place in data){
-            results.innerHTML += `
-            <option value='${place.id}'>${place.name} ${place.admin1_code}<option>`;
+
+    if (places.length > 0){
+        for (let i = 0; i < places.length; i++){
+            results.innerHTML += `<option value='${places[i].coordinates.latitude} ${places[i].coordinates.longitude}'>${places[i].name}, ${places[i].adminDivision1.name} ${places[i].country.id}<option>`;
         }
-        results.style.display = 'inline-block';
-        document.getElementById('birth_location').display = 'none;'
     } else {
-        document.getElementById('birth_location').innerHTML = "Invalid spelling format / city name"
+        document.getElementById('birth_location').value = "Invalid Input, no location found"
     }
-
 }
