@@ -13,15 +13,15 @@
         <a class="mpLinks" href="/register">Register</a>
         <a class="mpLinks" href="/login">Login</a>
     </div>
-    <div style="background-image: url('space.jpeg')" class="head">
+    <div style='background-color: aqua;' class="head">
         <img class="icon" src="{{ url_for('static',filename='images/astrology_icon.png') }}" alt="H">
         <h1 class="title">~~ <span style="color: green;">G</span> Horoscopes ~~</h1>
-    </div>
     <hr>
+    </div>
+    <br/>
     <div style="display: flex; align-items: center; width: 100%">
         <img id='signImg' src="{{ url_for('static', filename='images/signs/Leo.jpeg') }}">
-        <div>
-            
+        <div class="signHolder">
             <h1 id="sign">LEO </h1>
             <span id="current_date"></span>
         </div>
