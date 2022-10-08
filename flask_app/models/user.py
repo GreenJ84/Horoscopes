@@ -17,6 +17,7 @@ class User:
         self.email = data['email']
         self.dob = data['dob']
         self.tob = data['tob']
+        self.location = data['location']
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -59,7 +60,7 @@ class User:
     @classmethod
     def create_user(cls, data):
 
-        query = 'INSERT INTO users (first_name, last_name, dob, tob, email, password) VALUES (%(first_name)s, %(last_name)s, %(dob)s, %(tob)s, %(email)s, %(password)s)'
+        query = 'INSERT INTO users (first_name, last_name, dob, tob, email, password) VALUES (%(first_name)s, %(last_name)s, %(dob)s, %(tob)s, %(email)s, %(location)s, %(password)s)'
 
         results = connectToMySQL('horoscopes').query_db(query, data)
         print('created users')

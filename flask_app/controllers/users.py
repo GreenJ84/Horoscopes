@@ -1,3 +1,4 @@
+import datetime
 from flask import redirect, render_template, request, session, flash
 from flask_app import app
 from flask_bcrypt import Bcrypt
@@ -63,8 +64,10 @@ def register_user():
         'email': request.form['email'],
         'dob': request.form['dob'],
         'tob': request.form['tob'],
+        'location': request.form['location'],
         'password': password_hash
     }
+    print(data);
     user_id = User.create_user(data)
 
     session['user_id'] = user_id
@@ -114,7 +117,13 @@ def display_user():
         }
     user_info = User.get_user_info(data)
 
-    return render_template('user_page.html', user_info = user_info, display_name = session['user_first_name'])
+    date = user_info[0]['dob']
+    blank_time = datetime.time(0, 0, 0)
+    date_time = datetime.datetime.combine(date, blank_time)
+    timedelta = user_info[0]['tob']
+    new_datetime = date_time + timedelta
+
+    return render_template('user_page.html', user_info = user_info, dtob = new_datetime, display_name = session['user_first_name'])
 
 #=========================== Log User Out/ Clear session ====================
 @app.route('/logout')
